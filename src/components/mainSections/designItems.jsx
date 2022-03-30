@@ -42,7 +42,7 @@ export default function DesignItems(props) {
                 </LinkContainer>
             </td>
             <td>{designType.charAt(0).toUpperCase() + designType.slice(1)}</td>
-            <td>{new Date(lastModified).toLocaleString()}</td>
+            <td>{new Date(lastModified).toLocaleString('en-SG', {timeZone: 'Asia/Singapore'})}</td>
             <td>
                 <OverlayTrigger placement="top" overlay={<Tooltip>Copy</Tooltip>}>
                     <span><FaCopy className="me-1 clickable" onClick={() => setShowCopy(true)} /></span>
@@ -51,7 +51,7 @@ export default function DesignItems(props) {
                     <span><FaFileExport className="me-1 clickable" onClick={async () => {
                         const blob = await exportCharts([id]);
                         if (!blob) setExportError(true);
-                        else download(blob, `deisgn-${new Date().toLocaleString()}.csv`);
+                        else download(blob, `deisgn-${new Date().toLocaleString('en-SG', {timeZone: 'Asia/Singapore'})}.csv`);
                     }} /></span>
                 </OverlayTrigger>
                 <OverlayTrigger placement="top" overlay={<Tooltip>Delete</Tooltip>}>
