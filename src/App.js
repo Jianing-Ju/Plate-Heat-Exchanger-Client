@@ -4,6 +4,8 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCalculator } from "@fortawesome/free-solid-svg-icons";
 import { createContext, useState } from "react";
+import { Navigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export const UserContext = createContext();
 
@@ -11,6 +13,9 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userId, setUserId] = useState();
   const navigate = useNavigate();
+  useEffect(()=>{
+    navigate("/login");
+  }, []);
   return (
     <UserContext.Provider value={{loggedIn:loggedIn, setLoggedIn:setLoggedIn, userId:userId, setUserId:setUserId}}>
       <div style={{ margin: "0px" }}>
@@ -50,6 +55,7 @@ function App() {
             </Navbar.Collapse>
           </Container>
         </Navbar>
+        {/* <Navigate to="/login"/> */}
         <Outlet context={[setUserId, setLoggedIn]} />
       </div>
     </UserContext.Provider>
