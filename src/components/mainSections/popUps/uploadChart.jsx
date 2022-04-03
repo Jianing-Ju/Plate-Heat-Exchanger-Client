@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import { FormControl, Modal, Card, Form, Button } from "react-bootstrap";
 import { FaFile } from "react-icons/fa";
-import { downloadFile, uploadChart } from "../../api";
-import { MainContext } from "../main";
+import { downloadFile, uploadChart } from "../../../api";
+import { MainContext } from "../../main";
 import download from "downloadjs";
 
 export default function UploadChart(props) {

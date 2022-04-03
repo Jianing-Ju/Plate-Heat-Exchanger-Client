@@ -4,7 +4,7 @@ import {
     InputGroup,
     FormControl
 } from "react-bootstrap"
-import DataInput from "./steps/dataInput.jsx"
+import DataInput from "../inputUnit/dataInput.jsx"
 
 export default function Flow(props) {
     return (

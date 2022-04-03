@@ -1,5 +1,6 @@
 import axios from "axios";
 const addr = "https://phe-pro.herokuapp.com/api/";
+// const addr = "http://localhost:5000/api/";
 export async function getCalcRes(input, type) {
     const response = await fetch(addr + "calculate/" + type, {
         ...http("POST"),
@@ -124,12 +125,20 @@ export async function deleteFolder(folderId){
     return response.json();
 }
 
-export async function exportCharts(designId) {
+export async function exportCharts(designId, entry = null) {
+    var body;
+    if (entry){
+        body = {
+            newEntry: entry
+        }
+    } else {
+        body = {
+            designId: designId
+        }
+    }
     const response = await fetch(addr + "charts/export", {
         ...http("POST"),
-        body: JSON.stringify({
-            designId: designId
-        })
+        body: JSON.stringify(body)
     });
     if (!response.ok) {
         return false;

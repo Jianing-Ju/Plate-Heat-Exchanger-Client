@@ -16,13 +16,13 @@ import { useParams } from "react-router-dom";
 import { createContext, useEffect, useState } from "react";
 import { exportCharts, getDesigns, getFolders } from "../api.js";
 import { FaFileExport, FaFolderPlus, FaPlusCircle, FaTrash } from "react-icons/fa";
-import NewFolder from "./mainSections/newFolder.jsx";
-import UploadChart from "./mainSections/uploadChart.jsx";
+import NewFolder from "./mainSections/popUps/newFolder.jsx";
+import UploadChart from "./mainSections/popUps/uploadChart.jsx";
 import FolderItem from "./mainSections/folderItem.jsx";
-import AddToFolder from "./mainSections/addToFolder.jsx";
-import DeleteDesign from "./mainSections/deleteDesign.jsx";
+import AddToFolder from "./mainSections/popUps/addToFolder.jsx";
+import DeleteDesign from "./mainSections/popUps/deleteDesign.jsx";
 import download from "downloadjs";
-import ErrorMessage from "./mainSections/errorMessage.jsx";
+import ErrorMessage from "./mainSections/popUps/errorMessage.jsx";
 
 export const MainContext = createContext();
 

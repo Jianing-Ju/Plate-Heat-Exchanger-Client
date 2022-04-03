@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import { Card, Container, ListGroup, Button, Collapse, Alert } from "react-bootstrap";
-import ResultItem from "./steps/resultItem.jsx";
-import { parseRating, parseSizing } from "./utils/parseResult.js";
+import ResultItem from "./resultItem.jsx";
+import { parseRating, parseSizing } from "../utils/parseResult.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
-import { exportCharts, getCalcRes } from "../../api.js";
-import savePDF from "./utils/savePDF.js";
+import { exportCharts} from "../../../api.js";
+import savePDF from "../utils/savePDF.js";
 import download from "downloadjs";
 
 export default function Result(props) {
-    const {validPressure} = props;
+    const {validPressure, designId, input, type, result} = props;
     const { main: resMain,
         config: resConfig,
         heatTransfer: resHeatTransfer,
-        pressure: resPressure } = props.type == "rating" ? parseRating(props.result) : parseSizing(props.result);
+        pressure: resPressure } = type == "rating" ? parseRating(result) : parseSizing(result);
 
     const [showDetail, setshowDetail] = useState(false);
     const [showIter, setShowIter] = useState(false);
@@ -30,7 +30,7 @@ export default function Result(props) {
                     }
                 </ListGroup>
             </Card>
-            {props.type == "sizing" && (resMain[1].value > validPressure.cold || resMain[2].value > validPressure.hot) &&
+            {type == "sizing" && (resMain[1].value > validPressure.cold || resMain[2].value > validPressure.hot) &&
             <Alert className="mb-2 text-center" variant="danger">Pressure Limit Exceeded!</Alert>
             }
 
@@ -55,7 +55,12 @@ export default function Result(props) {
             <Button
                 className="steps" variant="secondary"
                 onClick={async()=>{
-                    const blob = await exportCharts(props.designId);
+                    let blob;
+                    if (designId == "new" || designId == "demo"){
+                        blob = await exportCharts([], {input: input, name: `new ${type}`, designType: type});
+                    } else{
+                        blob = await exportCharts([designId]);
+                    }
                     download(blob, `deisgn-${new Date().toLocaleString()}.csv`);
                 }}
             >

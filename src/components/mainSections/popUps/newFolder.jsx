@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FormControl, Modal, Button } from "react-bootstrap";
-import { addFolder } from "../../api";
+import { addFolder } from "../../../api";
 
 export default function NewFolder(props) {
     const [name, setName] = useState("");

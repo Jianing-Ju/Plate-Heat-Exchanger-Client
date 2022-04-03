@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Modal, Button, FormControl } from "react-bootstrap";
-import { saveDesign, designExists, updateDesign } from "../../api.js";
-import NewDeisgn from "../commonSections/newDesign.jsx";
+import { saveDesign, designExists, updateDesign } from "../../../api.js";
+import NewDeisgn from "../../commonSections/newDesign.jsx";
 
 export default function Save(props) {
     const [show, setShow] = useState(false);

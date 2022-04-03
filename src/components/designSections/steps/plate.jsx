@@ -11,10 +11,10 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-regular-svg-icons";
 import { useContext, useEffect, useState } from "react";
-import DataInput from "./steps/dataInput.jsx";
-import { getPlateGeos, savePlateGeo } from "../../api.js";
-import { UserContext } from "../../App.js";
-import SaveConfig from "./saveConfig.jsx";
+import DataInput from "../inputUnit/dataInput.jsx";
+import { getPlateGeos, savePlateGeo } from "../../../api.js";
+import { UserContext } from "../../../App.js";
+import SaveConfig from "../popUps/saveConfig.jsx";
 
 const plateGeoParams = ["plateThick", "plateEnlarge", "plateBeta", "platePortDia", "plateWidth",
     "platePortDisH", "platePortDisV", "plateLength", "platePitch"];

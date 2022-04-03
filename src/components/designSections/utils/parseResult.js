@@ -215,7 +215,7 @@ function parseRatingHeat(heatTransfer) {
                 value: heatTransfer[i].T_o_c_res
             },
             {
-                symbol: ["T", "o,c,res"],
+                symbol: ["T", "o,h,res"],
                 name: "Outlet Temperature of Hot Fluid (\xB0C)",
                 value: heatTransfer[i].T_o_h_res
             },

@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { FormSelect, Modal, Button } from "react-bootstrap";
-import { MainContext } from "../main"
-import { setFolder } from "../../api";
+import { MainContext } from "../../main"
+import { setFolder } from "../../../api";
 
 export default function AddToFolder(props) {
     const {show, setShow, designId} = props;

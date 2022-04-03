@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import NewDeisgn from "../commonSections/newDesign";
+import NewDeisgn from "../../commonSections/newDesign";
 import { nanoid } from "nanoid";
-import { getInput } from "../../api";
-import { MainContext } from "../main";
+import { getInput } from "../../../api";
+import { MainContext } from "../../main";
 
 export default function CopyDesign(props){
     // get input(from DB), type

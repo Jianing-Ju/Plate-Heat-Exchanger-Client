@@ -95,7 +95,6 @@ export default function DataInput(props) {
             setRange(fetchedRange);
         }
     }, [fetchedRange])
-    name == "flowPassC" && console.log(empty, valid[name]);
 
     return (
         <div className={classes + " form-item"}>

@@ -11,13 +11,13 @@ import { useLocation } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faCheckCircle, faSlidersH, faPen } from "@fortawesome/free-solid-svg-icons";
-import Plate from "./designSections/plate";
-import Fluid from "./designSections/fluid";
-import Flow from "./designSections/flow";
-import Result from "./designSections/result";
-import Save from "./designSections/save";
+import Plate from "./designSections/steps/plate";
+import Fluid from "./designSections/steps/fluid";
+import Flow from "./designSections/steps/flow";
+import Result from "./designSections/result/result";
+import Save from "./designSections/popUps/save";
 import { getCalcRes, getAvail, getInput } from "../api";
-import { Input } from "./inputs";
+import { Input } from "./designSections/utils/inputs";
 import { useEffect, useRef, useState } from "react";
 import { validData } from "./designSections/utils/validate.js";
 import { nanoid } from "nanoid";
@@ -221,6 +221,7 @@ export default function Design(props) {
                                     result={result}
                                     type={type}
                                     designId={designId}
+                                    input={input}
                                     validPressure={{
                                         cold: input.fluid.fluidMaxPDropC, 
                                         hot: input.fluid.fluidMaxPDropH

@@ -17,7 +17,6 @@ export default function FolderItem(props) {
                 <FaMinusCircle 
                 className="clickable" 
                     onClick={async ()=>{
-                        console.log("clicked")
                         await deleteFolder(folder.id);
                         updateFolders();
                         clearFilter();

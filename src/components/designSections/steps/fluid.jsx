@@ -7,17 +7,18 @@ import {
     Button,
     Dropdown
 } from "react-bootstrap"
-import { getFluidCond, saveFluidCond } from "../../api.js";
-import { UserContext } from "../../App.js";
-import SaveConfig from "./saveConfig.jsx";
-import DataInput from "./steps/dataInput.jsx"
+import { getFluidCond, saveFluidCond } from "../../../api.js";
+import { UserContext } from "../../../App.js";
+import SaveConfig from "../popUps/saveConfig.jsx";
+import DataInput from "../inputUnit/dataInput.jsx"
 
 export default function Fluid(props) {
     const { input, setInput, avail, type, valid, setValid } = props;
     const { userId } = useContext(UserContext);
     const [tempRangeC, setTempRangeC] = useState([]);
     const [tempRangeH, setTempRangeH] = useState([]);
-    const [show, setShow] = useState(false);
+    const [showHot, setShowHot] = useState(false);
+    const [showCold, setShowCold] = useState(false);
     const [fluidName, setFluidName] = useState("");
     const [savedFluids, setSavedFluids] = useState([]);
     const [initial, setInitial] = useState(true);
@@ -27,14 +28,34 @@ export default function Fluid(props) {
         return allConds.filter((fluidCond) => fluidCond.designType == type);
     }
 
-    const onSave = async () => {
-        const fluidCond = Object.entries(input).reduce((obj, pair) => ({
-            ...obj,
-            [pair[0].slice(0, -1)]: pair[1]
-        }), {})
-        console.log(fluidCond);
+    const onSaveCold = async () => {
+        const fluidCond = Object.entries(input).reduce((obj, pair) => {
+            if (pair[0].search("C")!=-1){
+                return {
+                    ...obj,
+                    [pair[0].slice(0, -1)]: pair[1]
+                }
+            } else {
+                return {...obj};
+            }
+        }, {})
         await saveFluidCond(fluidCond, userId, fluidName, type);
-        setShow(false);
+        setShowCold(false);
+        setSavedFluids(await getSavedFluid());
+    }
+    const onSaveHot = async () => {
+        const fluidCond = Object.entries(input).reduce((obj, pair) => {
+            if (pair[0].search("H")!=-1){
+                return {
+                    ...obj,
+                    [pair[0].slice(0, -1)]: pair[1]
+                }
+            } else {
+                return {...obj};
+            }
+        }, {})
+        await saveFluidCond(fluidCond, userId, fluidName, type);
+        setShowHot(false);
         setSavedFluids(await getSavedFluid());
     }
     useEffect(async () => {
@@ -58,7 +79,7 @@ export default function Fluid(props) {
                     {userId && <>
                         <Button
                             className="ms-auto me-1" variant="dark" size="sm"
-                            onClick={() => setShow(true)}
+                            onClick={() => setShowCold(true)}
                         >
                             Save</Button>
                         <Dropdown>
@@ -187,7 +208,7 @@ export default function Fluid(props) {
                     {userId && <>
                         <Button
                             className="ms-auto me-1" variant="dark" size="sm"
-                            onClick={() => setShow(true)}
+                            onClick={() => setShowHot(true)}
                         >
                             Save</Button>
                         <Dropdown>
@@ -310,12 +331,20 @@ export default function Fluid(props) {
                 </Card.Body>
             </Card>
             <SaveConfig
-                show={show}
-                setShow={setShow}
+                show={showCold}
+                setShow={setShowCold}
                 name={fluidName}
                 setName={setFluidName}
                 config={"Fluid Condition"}
-                onSave={onSave}
+                onSave={onSaveCold}
+            />
+            <SaveConfig
+                show={showHot}
+                setShow={setShowHot}
+                name={fluidName}
+                setName={setFluidName}
+                config={"Fluid Condition"}
+                onSave={onSaveHot}
             />
         </Form>
     )

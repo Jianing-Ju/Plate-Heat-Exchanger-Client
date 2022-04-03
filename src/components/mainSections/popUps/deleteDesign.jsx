@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Modal, Button } from "react-bootstrap";
-import { deleteDesign } from "../../api";
-import { MainContext } from "../main";
+import { deleteDesign } from "../../../api";
+import { MainContext } from "../../main";
 
 export default function DeleteDesign(props) {
     const { show, setShow, designs } = props;

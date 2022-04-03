@@ -8,11 +8,11 @@ import {
 } from "react-icons/fa";
 import { LinkContainer } from "react-router-bootstrap"
 import { deleteDesign, exportCharts } from "../../api";
-import AddToFolder from "./addToFolder";
-import CopyDesign from "./copyDesign";
-import DeleteDesign from "./deleteDesign";
+import AddToFolder from "./popUps/addToFolder";
+import CopyDesign from "./popUps/copyDesign";
+import DeleteDesign from "./popUps/deleteDesign";
 import download from "downloadjs";
-import ErrorMessage from "./errorMessage";
+import ErrorMessage from "./popUps/errorMessage";
 import { UserContext } from "../../App";
 
 export default function DesignItems(props) {
@@ -50,6 +50,7 @@ export default function DesignItems(props) {
                 <OverlayTrigger placement="top" overlay={<Tooltip>Export</Tooltip>}>
                     <span><FaFileExport className="me-1 clickable" onClick={async () => {
                         const blob = await exportCharts([id]);
+                        console.log("fetched")
                         if (!blob) setExportError(true);
                         else download(blob, `deisgn-${new Date().toLocaleString('en-SG', {timeZone: 'Asia/Singapore'})}.csv`);
                     }} /></span>

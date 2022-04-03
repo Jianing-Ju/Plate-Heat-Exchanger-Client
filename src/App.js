@@ -13,11 +13,11 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userId, setUserId] = useState();
   const navigate = useNavigate();
-  useEffect(()=>{
-    navigate("/login");
+  useEffect(() => {
+    navigate("/login", { replace: true });
   }, []);
   return (
-    <UserContext.Provider value={{loggedIn:loggedIn, setLoggedIn:setLoggedIn, userId:userId, setUserId:setUserId}}>
+    <UserContext.Provider value={{ loggedIn: loggedIn, setLoggedIn: setLoggedIn, userId: userId, setUserId: setUserId }}>
       <div style={{ margin: "0px" }}>
         <Navbar bg="light" variant="light" expand="sm">
           <Container>
@@ -32,22 +32,23 @@ function App() {
                   <LinkContainer to={`/main/${userId}`}>
                     <Nav.Link>Main</Nav.Link>
                   </LinkContainer>
-                  <Nav.Link 
-                  href="#"
-                  onClick={()=>{
-                    setLoggedIn(false);
-                    navigate("/login");
-                  }}
+                  <Nav.Link
+                    href="#"
+                    onClick={() => {
+                      setUserId();
+                      setLoggedIn(false);
+                      navigate("/login");
+                    }}
                   >Logout</Nav.Link>
                   {/* <Nav.Link as={Link} to={`/design/rating?userId=${userId}&designId=new`}>Rating</Nav.Link>
               <Nav.Link as={Link} to={`/design/sizing?userId=${userId}&designId=new`}>Sizing</Nav.Link> */}
                 </Nav>
                 :
                 <Nav className="ms-auto">
-                  <Nav.Link as={Link} to="/register">Register</Nav.Link>
-                  <Nav.Link as={Link} to="/login">Log In</Nav.Link>
                   <Nav.Link as={Link} to="/design/rating?designId=demo">Rating Demo</Nav.Link>
                   <Nav.Link as={Link} to="/design/sizing?designId=demo">Sizing Demo</Nav.Link>
+                  <Nav.Link as={Link} to="/register">Register</Nav.Link>
+                  <Nav.Link as={Link} to="/login">Log In</Nav.Link>
                 </Nav>
 
               }
