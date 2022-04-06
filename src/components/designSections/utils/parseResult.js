@@ -437,12 +437,12 @@ function parseSizingHeat(heatTransfer) {
             {
                 symbol: ["Re", "c,res"],
                 name: "Renold Number of Cold Fluid",
-                value: heatTransfer[i].Re_c
+                value: heatTransfer[i].Re_c_res
             },
             {
                 symbol: ["Re", "h,res"],
                 name: "Renold Number of Hot Fluid",
-                value: heatTransfer[i].Re_h
+                value: heatTransfer[i].Re_h_rs
             }
         ];
         res.push(resData);
