@@ -425,6 +425,11 @@ function parseSizingHeat(heatTransfer) {
                 value: heatTransfer[i].A_t
             },
             {
+                symbol: ["N", "t"],
+                name: "Total Number of Plate",
+                value: heatTransfer[i].N_t
+            },
+            {
                 symbol: ["G", "c,h"],
                 name: "Channel Mass Velocity of Hot Fluid (kg/m\u00B2∙s)",
                 value: heatTransfer[i].G_c_h
@@ -442,7 +447,7 @@ function parseSizingHeat(heatTransfer) {
             {
                 symbol: ["Re", "h,res"],
                 name: "Renold Number of Hot Fluid",
-                value: heatTransfer[i].Re_h_rs
+                value: heatTransfer[i].Re_h_res
             }
         ];
         res.push(resData);
