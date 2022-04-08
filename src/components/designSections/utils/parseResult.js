@@ -298,6 +298,11 @@ function parseSizingConfig(config) {
             value: config.mu_c
         },
         {
+            symbol: ["\u03F1", "c"],
+            name: "Density of Cold Fluid (kg/m\u00B3)",
+            value: config.ro_c
+        },
+        {
             symbol: ["C", "p,c"],
             name: "Property of Cold Fluid: Specifc Heat Capacity (J/kg∙K)",
             value: config.Cp_c
@@ -316,6 +321,11 @@ function parseSizingConfig(config) {
             symbol: ["\u03BC", "h"],
             name: "Property of Hot Fluid: Dynamic Viscosity (Pa∙s)",
             value: config.mu_h
+        },
+        {
+            symbol: ["\u03F1", "h"],
+            name: "Density of Hot Fluid (kg/m\u00B3)",
+            value: config.ro_h
         },
         {
             symbol: ["C", "p,h"],
