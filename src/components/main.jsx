@@ -37,8 +37,10 @@ export function Main() {
     const [showAddTo, setShowAddTo] = useState(false);
     const [showDelete, setShowDelete] = useState(false);
     const [exportError, setExportError] = useState(false);
+    const [filteredDesigns, setFilteredDesigns] = useState([]);
     // console.log(designs);
     // console.log(folders);
+    console.log(selectedDesigns)
 
     // filters
     const typeFilters = {
@@ -70,7 +72,7 @@ export function Main() {
 
     // fucntions
     const getSelected = () => {
-        return designs.reduce((res, design, index) => {
+        return filteredDesigns.reduce((res, design, index) => {
             if (selectedDesigns[index]) {
                 return [...res, design.id];
             } else {
@@ -79,7 +81,7 @@ export function Main() {
         }, [])
     }
     const getSelectedDesign = () => {
-        return designs.reduce((res, design, index) => {
+        return filteredDesigns.reduce((res, design, index) => {
             if (selectedDesigns[index]) {
                 return [...res, design];
             } else {
@@ -87,6 +89,23 @@ export function Main() {
             }
         }, [])
     }
+    // const getFilteredDesigns = ()=> designs.filter((design) => filter(design));
+    // // change designs available for select when filter changes
+    // useEffect(()=>{
+    //     console
+    //     setSelectedDesigns( Array(getFilteredDesigns().length).fill(false));
+    // }, [filter])
+
+    useEffect(()=>{
+        setSelectedDesigns( Array(filteredDesigns.length).fill(false));
+    }, [filteredDesigns])
+
+    useEffect(()=>{
+        setFilteredDesigns(designs.filter((design) => filter(design)));
+    }, [designs, filter])
+    
+
+    
     // console.log(selectedDesigns)
     return (
         <MainContext.Provider value={{ folders: folders, updateDesigns: getAllDesigns }}>
@@ -168,7 +187,7 @@ export function Main() {
                                     <td>
                                         <input
                                             type="checkbox"
-                                            checked={selectedDesigns.every(value => value)}
+                                            checked={selectedDesigns.length && selectedDesigns.every(value => value)}
                                             onChange={(event) => {
                                                 setSelectedDesigns(prev => {
                                                     if (prev.every(value => value)) {
@@ -188,7 +207,7 @@ export function Main() {
                             </thead>
                             <tbody>
                                 {
-                                    designs.filter((design) => filter(design)).map((design, index) =>
+                                    filteredDesigns.map((design, index) =>
                                         <DesignItems
                                             key={design.id}
                                             design={design}
