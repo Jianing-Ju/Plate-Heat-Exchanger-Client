@@ -205,7 +205,7 @@ export default function Plate(props) {
                     <DataInput
                         classes="form-item-last"
                         name="plateEnlarge"
-                        label="Enlargement Fatcor"
+                        label="Enlargement Factor"
                         input={props.input}
                         setInput={props.setInput}
                         valid={props.valid}
